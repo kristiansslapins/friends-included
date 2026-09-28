@@ -1,0 +1,3 @@
+if(!process.env.APP_URL?.startsWith('https://')||!process.env.TELEGRAM_BOT_TOKEN||!process.env.TELEGRAM_WEBHOOK_SECRET)throw Error('Set APP_URL, TELEGRAM_BOT_TOKEN and TELEGRAM_WEBHOOK_SECRET in .env.local.');
+const r=await fetch(`https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/setWebhook`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url:process.env.APP_URL.replace(/\/$/,'')+'/api/telegram',secret_token:process.env.TELEGRAM_WEBHOOK_SECRET,allowed_updates:['message']})});
+const body=await r.json();console.log(body.ok?'Telegram webhook connected. Send /start to the bot.':`Webhook setup failed (${r.status}). Check configuration.`);if(!body.ok)process.exitCode=1;
