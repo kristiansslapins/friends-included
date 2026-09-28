@@ -1,0 +1,8 @@
+{
+  "name": "friends-included-homework",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": { "start": "node scripts/dev.mjs", "test": "node --test test/*.test.mjs", "setup:telegram": "node --env-file=.env.local scripts/telegram.mjs" }
+}
